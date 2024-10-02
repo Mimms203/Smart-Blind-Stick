@@ -1,0 +1,5 @@
+WORKING
+Our blind stick provides multiple facilities for the blind people.
+On of the main features are that we have connected an ultrasonic sensor with servo motor, which combinely acts as an radar. Thus the sensor rotates 180 deg to detect any object within 50 cm distance and accordingly the alarm buzzes. This notifies the stick user.
+We also have added a feature of connecting the stick with google voice assistant through MIT Inventor app. Through the app we can either say “find the stick” to assistant to which the alarm buzzes  . 
+Or we have created a manual switch on and off button for the alarm through the app.
