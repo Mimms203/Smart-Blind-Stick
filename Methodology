@@ -1,0 +1,8 @@
+Methodology
+The stick has:
+5V Supply: Gives power to the Arduino
+Arduino: We use Arduino Uno as our microprocessor. It collects the inputs from the sensors and processes them to give the desired outputs to the alarm.
+Ultrasonic sensor: The sensor detects if any object is less than 60 cm and accordingly gives input to the sensor
+Radar: An ultrasonic sensor connected with a servo motor which rotates the sensor 360 deg to detect obstacles from every direction (360 deg)
+Sound Sensor: We would set the sensor to detect a clap sound. If the person cannot see where he has kept the stick, he can simply clap . The sound sensor would detect the clap as a sound and alarm would beep, thus helping the person to find it.
+Alarm: The alarm beeps if it detect any object in distance less than 60 cm or if it detects any clap.
