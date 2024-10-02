@@ -1,0 +1,78 @@
+#include <Servo.h>
+#include <SoftwareSerial.h>
+Servo myservo;    
+const int trigPin = 10;
+const int echoPin = 11;
+int alarm = 4;
+
+char data;
+
+
+
+SoftwareSerial BT(10,11);
+String state;
+
+long duration;
+int distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT); 
+  pinMode(alarm, OUTPUT);
+  myservo.attach(9);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if(Serial.available()>0){
+    data=Serial.read();
+    Serial.println(data);
+    if(data=='0'){
+    digitalWrite(alarm,LOW);
+    }
+    else if(data=='1'){
+      digitalWrite(alarm,HIGH);
+      delay(2000);
+      }
+  }
+   distance=calculateDistance(); 
+   Serial.println(distance);
+  for (int pos = 90; pos <= 180; pos += 10) {  
+      myservo.write(pos);
+      delay(30);
+   
+    if(distance<=50){
+      digitalWrite(alarm,HIGH);
+    }
+    else{
+      digitalWrite(alarm,LOW);
+    }
+  }
+  delay(200);
+for (int pos = 180; pos >= 90; pos -= 10) { 
+          myservo.write(pos);
+      delay(30);
+
+    if(distance<=50){
+      digitalWrite(alarm,HIGH);
+    }
+    else{
+      digitalWrite(alarm,LOW);    
+    } 
+  }
+  delay(200);
+ }
+ int calculateDistance(){ 
+  
+  digitalWrite(trigPin, LOW); 
+  delay(5); 
+  // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(trigPin, HIGH); 
+ delay(5); 
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH); 
+// Reads the echoPin
+ distance= duration*0.034/2;
+  return distance;
+}
+
